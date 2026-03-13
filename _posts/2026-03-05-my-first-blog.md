@@ -4,7 +4,7 @@ author: Illusivehacks
 date: 2026-03-05 20:59:33 +0300
 description: Learning Buffer Overflow from Hacksplaining - a comprehensive guide to understanding this classic vulnerability
 
-image: /assets/images/First_blog/firstblog.jpg   
+image: /assets/images/First_blog/first_blog.jpeg   
 
 categories: [Cybersecurity, Buffer Overflow, Hacksplaining, Vulnerabilities]
 tags: [Buffer Overflow, Hacksplaining, Shellcode, NOP Sled, Memory Safety, C, C++]
