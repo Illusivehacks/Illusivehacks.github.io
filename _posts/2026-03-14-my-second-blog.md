@@ -4,7 +4,7 @@ author: Illusivehacks
 date: 2026-03-14 10:00:00 +0300
 description: A detailed guide on downloading, installing and troubleshooting Metasploitable 2 in VirtualBox for your cybersecurity lab.
 
-image: /assets/images/Second_blog/second_blog.jpeg
+image: /assets/images/Second_blog/second_blog.jpg
 
 categories: [Cybersecurity, Tutorial, Metasploitable, VirtualBox]
 tags: [Metasploitable 2, VirtualBox, Installation, Pentesting Lab, Ubuntu, Troubleshooting, Cybersecurity]
@@ -33,41 +33,41 @@ Now, let's build its new home in VirtualBox.
 
 Create the New VM: Open VirtualBox and click on the "New" button. Give your new machine a name (like **"Metasploitable 2"**), choose a folder to store it and proceed with the default settings for now. You can adjust RAM later if needed, but the defaults work fine. Click "Finish" to create the shell.
 
-https:///assets/images/Second_blog/image1.png
+https:///assets/images/Second_blog/image1.jpg
 
 Attach the Metasploitable Hard Drive: Select your newly created "Metasploitable 2" VM from the list on the left and click the "Settings" button (**the orange gear**). Navigate to the Storage section. You'll see a controller. Click on the empty disk icon under "Controller: IDE" and then click the disk icon on the far right to "Choose a disk file." Browse to where you extracted the files and select the Metasploitable.vmdk. Click "OK" to save the settings. You're now ready to fire it up!
 
-https:///assets/images/Second_blog/image2.png
+https:///assets/images/Second_blog/image2.jpg
 
 ### Q: I tried to boot it, but I got an error! The screen is frozen or has a bunch of text. What went wrong?
 **Ans:** Ah, you've hit the classic snag. Metasploitable 2 is based on an older version of Ubuntu (8.04) and modern computers with their newer processors and hardware can confuse it. This results in a kernel panic or a boot loop. Don't worry, it's a rite of passage! You'll see a screen similar to this:
 
-https:///assets/images/Second_blog/image3.png
+https:///assets/images/Second_blog/image3.jpg
 
 But we have a fix. It's time to do some manual troubleshooting.
 
 Enter the Boot Menu: Reboot the VM (from the VirtualBox menu: Machine -> Reset). As soon as the screen lights up again, start tapping the Esc key repeatedly until you are presented with a boot menu.
 
-https:///assets/images/Second_blog/image4.png
+https:///assets/images/Second_blog/image4.jpg
 
 Edit the Boot Entry: Use the arrow keys to highlight the first option, "Ubuntu 8.04, Kernel 2.6.24-16-server (**recovery mode**)" , but don't press Enter. Instead, press the e key to edit the boot commands.
 
-https:///assets/images/Second_blog/image5.png
+https:///assets/images/Second_blog/image5.jpg
 
 Find the Kernel Line: You'll see a few lines of text. Use the arrow keys to navigate down to the line that starts with kernel /vmlinuz-2.6.24-16-server... . It will look something like this:
 *kernel /vmlinuz-2.6.24-16-server root=/dev/mapper/metasploitable-root ro quiet splash*
 
-https:///assets/images/Second_blog/image6.png
+https:///assets/images/Second_blog/image6.jpg
 
 Add the Magic Parameters: Press e again to edit this specific line. Use the arrow key to go to the very end of the line. Add a space and then type the following two words:
 **noapic nolapic**
 So the end of the line will now look like: ... ro quiet splash noapic nolapic
 
-https:///assets/images/Second_blog/image7.png
+https:///assets/images/Second_blog/image7.jpg
 
 Boot! Press Enter to save this temporary change and go back to the previous screen. Now, press the b key. This will boot the system with your new parameters.
 
-https:///assets/images/Second_blog/image8.png
+https:///assets/images/Second_blog/image8.jpg
 
 The VM should now boot successfully without any errors. You'll be greeted with a login prompt.
 
@@ -78,9 +78,9 @@ Username: msfadmin
 
 Password: msfadmin
 
-https:///assets/images/Second_blog/image9.png
+https:///assets/images/Second_blog/image9.jpg
 
-https:///assets/images/Second_blog/image10.png
+https:///assets/images/Second_blog/image10.jpg
 
 And there you have it! You are now logged into your very own vulnerable machine. From here, you can run ifconfig to find its IP address (make sure your VirtualBox network settings are correct, like using a Host-Only or NAT Network adapter) and start your scans and attacks from your Kali Linux machine.
 
@@ -98,12 +98,12 @@ Edit them permanently. Just like before, go to the end of each of these lines an
 
 *kernel /vmlinuz-2.6.24-16-server root=/dev/mapper/metasploitable-root ro single noapic nolapic*
 
-https:///assets/images/Second_blog/image11.png
+https:///assets/images/Second_blog/image11.jpg
 
 Save, Exit and Reboot. Press Ctrl+O to save the file, then Ctrl+X to exit nano. Finally, reboot your system to test it out:
 sudo reboot
 
-https:///assets/images/Second_blog/image12.png
+https:///assets/images/Second_blog/image12.jpg
 
 Now, your Metasploitable 2 VM will boot up perfectly every single time, no manual intervention needed.
 
